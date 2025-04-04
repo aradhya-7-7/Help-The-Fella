@@ -1,0 +1,150 @@
+.reply_card {
+  width: 100%;
+  border: 2px solid var(--accent);
+  border-radius: 5px;
+  padding: 1rem;
+  display: grid;
+  background-color: rgba(29, 37, 62, 0.7);
+  box-shadow: 0 0 8px var(--accent), inset 0 0 8px rgba(255, 41, 117, 0.4);
+  margin-bottom: 1rem;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+/* Add scanline effect to reply cards */
+.reply_card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(33, 68, 149, 0.04) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Add CRT edge effect */
+.reply_card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 5px;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.reply_card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px var(--accent), inset 0 0 12px rgba(255, 41, 117, 0.6);
+}
+
+.reply_card > .reply_text {
+  font-size: 1.5rem;
+  color: var(--white);
+  font-family: 'VT323', monospace;
+  line-height: 1.6;
+  text-shadow: 0 0 2px var(--white);
+  position: relative;
+  z-index: 2;
+}
+
+.reply_card > .reply_from,
+.reply_card > .reply_time {
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  padding: 0 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.reply_card > .reply_from {
+  color: var(--accent-secondary);
+  border-left: 3px solid var(--accent-secondary);
+  text-shadow: 0 0 3px var(--accent-secondary);
+  transition: text-shadow 0.3s ease;
+}
+
+.reply_card:hover > .reply_from {
+  text-shadow: 0 0 5px var(--accent-secondary), 0 0 8px var(--accent-secondary);
+}
+
+.reply_card > .reply_time {
+  color: var(--accent);
+  border-right: 3px solid var(--accent);
+  justify-self: flex-end;
+  text-shadow: 0 0 3px var(--accent);
+  transition: text-shadow 0.3s ease;
+}
+
+.reply_card:hover > .reply_time {
+  text-shadow: 0 0 5px var(--accent), 0 0 8px var(--accent);
+}
+
+/* Button shine effect for reply card */
+.reply_card:hover::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(45deg);
+  animation: shine 1.5s forwards;
+  z-index: 0;
+}
+
+@keyframes shine {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .reply_card {
+    padding: 0.8rem;
+  }
+  .reply_card > .reply_text {
+    font-size: 1.1rem;
+  }
+  .reply_card > .reply_from,
+  .reply_card > .reply_time {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .reply_card {
+    padding: 0.7rem;
+    grid-template-columns: 1fr;
+  }
+  .reply_card > .reply_text {
+    font-size: 1rem;
+  }
+  .reply_card > .reply_from,
+  .reply_card > .reply_time {
+    font-size: 0.7rem;
+  }
+  .reply_card > .reply_time {
+    border-right: none;
+    border-left: 3px solid var(--accent);
+  }
+}

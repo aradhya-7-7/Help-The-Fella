@@ -1,0 +1,490 @@
+/* Hero Section */
+.hero {
+  background: rgba(29, 37, 62, 0.9);
+  background-image: 
+    linear-gradient(0deg, rgba(51, 204, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(51, 204, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  width: 100%;
+  display: flex;
+  text-align: center;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  border-bottom: 4px solid var(--accent);
+  box-shadow: 0 0 15px var(--accent-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(0deg, rgba(33, 68, 149, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(33, 68, 149, 0.07) 1px, transparent 1px);
+  background-size: 20px 20px;
+  z-index: 0;
+}
+
+.hero > .logo {
+  margin: 0;
+  color: var(--primary);
+  text-shadow: 3px 3px 0px var(--accent), 5px 5px 0px rgba(224, 40, 80, 0.5);
+  font-family: "Press Start 2P", cursive;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-style: normal;
+  font-weight: 400;
+  display: flex;
+  gap: clamp(0.5rem, 2vw, 1.5rem);
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero > .logo > span {
+  --animation-duration: 5s;
+  --animation-delay: 10s;
+  transition: all 0.3s ease;
+}
+
+.hero > .logo > span:hover {
+  transform: translateY(-5px);
+  color: var(--accent);
+}
+
+.hero > .logo > span:nth-child(1) {
+  animation: move1 var(--animation-duration) forwards infinite;
+  animation-delay: var(--animation-delay);
+}
+
+.hero > .logo > span:nth-child(2) {
+  animation: move2 var(--animation-duration) forwards infinite;
+  animation-delay: var(--animation-delay);
+}
+
+.hero > .logo > span:nth-child(3) {
+  animation: move3 var(--animation-duration) forwards infinite;
+  animation-delay: var(--animation-delay);
+}
+
+.hero > .hero_sub {
+  width: clamp(15rem, 90%, 60%);
+  text-align: center;
+  color: var(--white);
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  line-height: 1.4;
+  position: relative;
+  z-index: 1;
+  padding: clamp(1rem, 3vw, 2rem);
+  
+  /* Glass effect base */
+  background-color: rgba(208, 211, 222, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* For Safari */
+  
+  /* Modern glass border */
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  
+  /* Subtle inner glow */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 
+              inset 0 0 2px rgba(255, 255, 255, 0.2);
+  
+  /* Retro elements */
+  border-top: 2px solid rgba(51, 204, 255, 0.5);
+  border-left: 2px solid rgba(51, 204, 255, 0.3);
+  border-right: 1px solid rgba(255, 41, 117, 0.3);
+  border-bottom: 2px solid rgba(255, 41, 117, 0.5);
+  
+  /* Additional glass reflections */
+  overflow: hidden;
+}
+
+/* Glass reflection effect */
+.hero_sub::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  transform: rotate(45deg);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Subtle scanlines */
+.hero_sub::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.03) 0px,
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes move1 {
+  0% {
+    order: 0;
+  }
+  50% {
+    order: 1;
+  }
+  100% {
+    order: 2;
+  }
+}
+
+@keyframes move2 {
+  0% {
+    order: 1;
+  }
+  50% {
+    order: 2;
+  }
+  100% {
+    order: 0;
+  }
+}
+
+@keyframes move3 {
+  0% {
+    order: 2;
+  }
+  50% {
+    order: 0;
+  }
+  100% {
+    order: 1;
+  }
+}
+
+/* Main Section */
+.main {
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 5vw, 4rem);
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.main > .actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  padding-bottom: clamp(1rem, 2vw, 1.5rem);
+  border-bottom: 2px solid rgba(255, 41, 117, 0.3);
+}
+
+.posts_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.post_card {
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.post_card:hover {
+  transform: translateY(-5px);
+}
+
+/* .posts_container > .post_card {
+  flex: 1;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  transform-origin: center;
+  position: relative;
+  display: flex;
+} */
+
+.posts_container > .post_card:hover {
+  transform: translateY(-10px) scale(1.03);
+  z-index: 2;
+}
+
+.posts_container > .post_card > div {
+  width: 100%;
+  height: 100%;
+  background-color: var(--secondary);
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  box-shadow: 0 0 10px rgba(224, 40, 80, 0.3);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.posts_container > .post_card:hover > div {
+  box-shadow: 0 0 20px var(--accent);
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+  .posts_container > .post_card:active {
+    transform: translateY(-5px) scale(1.02);
+  }
+  
+  .posts_container > .post_card:active > div {
+    box-shadow: 0 0 15px var(--accent);
+  }
+  
+  .hero > .logo > span:active {
+    transform: translateY(-3px);
+    color: var(--accent);
+  }
+}
+
+/* Glitch effect for logo on hover */
+@keyframes glitch {
+  0% {
+    text-shadow: 3px 3px 0px var(--accent);
+  }
+  25% {
+    text-shadow: -3px -3px 0px var(--accent-secondary);
+  }
+  50% {
+    text-shadow: 3px -3px 0px var(--accent);
+  }
+  75% {
+    text-shadow: -3px 3px 0px var(--accent-secondary);
+  }
+  100% {
+    text-shadow: 3px 3px 0px var(--accent);
+  }
+}
+
+.hero > .logo:hover > span {
+  animation: glitch 0.5s infinite;
+}
+
+/* Post card hover effect */
+.post_card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(87, 165, 204, 0.1) 50%,
+    transparent 100%
+  );
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.post_card:hover::before {
+  opacity: 1;
+}
+
+/* Additional responsive adjustments */
+/* For extremely small screens */
+@media screen and (max-width: 320px) {
+  .hero > .logo {
+    font-size: 1.5rem;
+  }
+  
+  .hero > .hero_sub {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+  
+  .main {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+}
+
+/* For smartphones */
+@media screen and (max-width: 480px) {
+  .posts_container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* For landscape phones and small tablets */
+@media screen and (min-width: 481px) and (max-width: 767px) {
+  .posts_container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+}
+
+/* For medium devices like tablets */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .posts_container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* For larger tablets and small desktops */
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .posts_container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* For large desktops */
+@media screen and (min-width: 1200px) {
+  .posts_container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* High resolution screens */
+@media screen and (min-width: 1400px) {
+  .main {
+    max-width: 1400px;
+  }
+  
+  .hero > .logo {
+    font-size: 4.5rem;
+  }
+  
+  .hero > .hero_sub {
+    font-size: 1.8rem;
+    width: 55%;
+  }
+}
+
+/* Fix for Safari and older browsers */
+@supports not (backdrop-filter: blur(12px)) {
+  .hero > .hero_sub {
+    background-color: rgba(29, 37, 62, 0.8);
+  }
+}
+
+/* Print styles - maintain readability when printed */
+@media print {
+  .hero {
+    background: #1d253e;
+    border-bottom: 2px solid #333;
+    box-shadow: none;
+    padding: 2rem 1rem;
+  }
+  
+  .hero > .logo {
+    color: #000;
+    text-shadow: none;
+  }
+  
+  .hero > .hero_sub {
+    background-color: #f1f1f1;
+    color: #000;
+    border: 1px solid #ccc;
+    box-shadow: none;
+  }
+  
+  .posts_container > .post_card > div {
+    box-shadow: none;
+    border: 1px solid #999;
+  }
+}
+
+/* Dark mode preference adjustments */
+@media (prefers-color-scheme: dark) {
+  /* Already dark-themed, but can add enhancements */
+  .hero {
+    box-shadow: 0 0 20px var(--accent-secondary);
+  }
+  
+  .hero > .logo {
+    text-shadow: 3px 3px 0px var(--accent), 5px 5px 0px rgba(224, 40, 80, 0.7);
+  }
+}
+
+/* Light mode preference adjustments */
+@media (prefers-color-scheme: light) {
+  /* If needed, but current theme is intended to be dark */
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .hero > .logo > span {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .hero > .logo > span:hover,
+  .posts_container > .post_card:hover {
+    transform: none;
+  }
+  
+  .hero > .logo:hover > span {
+    animation: none !important;
+  }
+  
+  .hero_sub::before {
+    display: none;
+  }
+}
+
+/* High-contrast mode adjustments for accessibility */
+@media (forced-colors: active) {
+  .hero > .logo {
+    text-shadow: none;
+  }
+  
+  .posts_container > .post_card > div {
+    border: 2px solid CanvasText;
+  }
+  
+  .hero > .hero_sub {
+    border: 2px solid CanvasText;
+  }
+}

@@ -1,0 +1,381 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+  --primary: #0a0e29;
+  --secondary: #1d253e;
+  --white: #f1f2fd;
+  --accent: #ff2975;
+  --accent-secondary: #33ccff;
+  --grid-color: rgba(33, 68, 149, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%; /* 10px base for easier rem calculations */
+}
+
+body {
+  background: var(--primary);
+  color: var(--white);
+  font-family: 'Press Start 2P', cursive;
+  line-height: 1.6;
+  background-image: 
+    linear-gradient(0deg, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: center center;
+  overflow-x: hidden;
+  padding: 2rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 2rem;
+  text-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent);
+  letter-spacing: 0.1rem;
+}
+
+h1 {
+  font-size: 3.2rem;
+}
+
+h2 {
+  font-size: 2.4rem;
+}
+
+p {
+  margin-bottom: 1.6rem;
+  font-size: 1.4rem;
+  text-shadow: 0 0 2px var(--white);
+}
+
+a {
+  color: var(--accent-secondary);
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--white);
+  text-shadow: 0 0 5px var(--accent-secondary), 0 0 10px var(--accent-secondary);
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--accent-secondary);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.container {
+  max-width: 125rem;
+  margin: 0 auto;
+  padding: 2.5rem;
+  background-color: rgba(0, 21, 36, 0.7);
+  border: 2px solid var(--accent);
+  border-radius: 6px;
+  box-shadow: 0 0 12px var(--accent), inset 0 0 12px var(--accent);
+}
+
+.btn {
+  display: inline-block;
+  background-color: var(--secondary);
+  color: var(--white);
+  padding: 1rem 2rem;
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 1rem 0;
+  text-transform: uppercase;
+  box-shadow: 0 0 5px var(--accent);
+}
+
+.btn:hover {
+  background-color: var(--accent);
+  box-shadow: 0 0 15px var(--accent);
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* Animation for neon flicker effect */
+@keyframes neonFlicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent);
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
+
+.neon-text {
+  animation: neonFlicker 3s infinite alternate;
+}
+
+/* Scanline effect */
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.05) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* Modal styling with retro theme */
+.modal > div > div {
+  padding: 1.5rem 2.5rem;
+  background: var(--secondary);
+  color: var(--white);
+  border: 3px solid var(--accent);
+  border-radius: 6px;
+  box-shadow: 0 0 15px rgba(255, 41, 117, 0.6), inset 0 0 8px rgba(255, 41, 117, 0.4);
+  font-family: 'VT323', monospace;
+  letter-spacing: 0.05rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add scanline effect to modal */
+.modal > div > div::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(33, 68, 149, 0.04) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Add CRT edge effect */
+.modal > div > div::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 6px;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+/* Form layout */
+.modal > div > div > form > .MuiDialogContent-root {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 1.5rem 2.5rem !important;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Full width inputs */
+.modal > div > div > form > .MuiDialogContent-root > .title-input,
+.modal > div > div > form > .MuiDialogContent-root > .description-input {
+  grid-column: 1/3;
+  background: rgba(10, 14, 41, 0.7);
+  border: 2px solid var(--accent-secondary);
+  border-radius: 4px;
+  padding: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+/* Input focus states for better UX */
+.modal > div > div > form > .MuiDialogContent-root input,
+.modal > div > div > form > .MuiDialogContent-root textarea {
+  color: var(--white);
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  background: transparent;
+}
+
+/* Input labels for better readability */
+.modal > div > div > form > .MuiDialogContent-root label {
+  color: var(--accent-secondary);
+  font-family: 'VT323', monospace;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 5px var(--accent-secondary);
+}
+
+/* Focused input styling */
+.modal > div > div > form > .MuiDialogContent-root > div:focus-within {
+  box-shadow: 0 0 10px var(--accent-secondary);
+  border-color: var(--accent);
+}
+
+/* Button styling */
+.modal > div > div > form > div > button {
+  background: var(--accent);
+  color: var(--white);
+  font-family: 'VT323', monospace;
+  font-size: 1.4rem;
+  padding: 0.7rem 1.5rem;
+  border: 2px solid var(--white);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 8px var(--accent);
+}
+
+/* Button hover effect */
+.modal > div > div > form > div > button:hover {
+  background: var(--accent-secondary);
+  box-shadow: 0 0 15px var(--accent-secondary);
+  transform: translateY(-2px);
+}
+
+/* Button active effect */
+.modal > div > div > form > div > button:active {
+  transform: translateY(1px);
+}
+
+/* Button shine effect */
+.modal > div > div > form > div > button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(45deg);
+  transition: all 0.3s ease;
+}
+
+.modal > div > div > form > div > button:hover::after {
+  left: 100%;
+}
+
+/* Dialog title styling */
+.modal > div > div > .MuiDialogTitle-root {
+  font-family: 'VT323', monospace;
+  font-size: 2rem;
+  color: var(--white);
+  text-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent);
+  text-align: center;
+  padding: 1.5rem 1rem;
+  border-bottom: 2px solid var(--accent);
+  background: var(--primary);
+}
+
+/* Dialog actions styling */
+.modal > div > div > form > .MuiDialogActions-root {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 2rem;
+  border-top: 2px solid var(--accent);
+  background: var(--primary);
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 56.25%; /* 9px base */
+  }
+  
+  .container {
+    padding: 1.5rem;
+  }
+  
+  .modal > div > div > form > .MuiDialogContent-root {
+    grid-template-columns: 1fr;
+    padding: 1rem 1.5rem !important;
+  }
+  
+  .modal > div > div > form > .MuiDialogContent-root > .title-input,
+  .modal > div > div > form > .MuiDialogContent-root > .description-input {
+    grid-column: 1;
+  }
+  
+  .modal > div > div {
+    padding: 1rem 1.5rem;
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 50%; /* 8px base */
+  }
+  
+  h1 {
+    font-size: 2.8rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  .container {
+    padding: 1rem;
+  }
+  
+  body {
+    padding: 1rem;
+    background-size: 15px 15px;
+  }
+  
+  .modal > div > div > form > .MuiDialogContent-root input,
+  .modal > div > div > form > .MuiDialogContent-root textarea {
+    font-size: 1.4rem; /* Slightly larger font on small screens */
+    line-height: 1.4;
+  }
+  
+  .modal > div > div > form > .MuiDialogContent-root label {
+    font-size: 1.5rem;
+  }
+  
+  .modal > div > div > .MuiDialogTitle-root {
+    font-size: 1.8rem;
+  }
+}

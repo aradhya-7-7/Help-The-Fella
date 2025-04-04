@@ -1,0 +1,291 @@
+.header {
+  background: var(--secondary);
+  width: 100%;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  padding: 0;
+  grid-template-columns: auto 1fr;
+  border-bottom: 3px solid var(--accent);
+  box-shadow: 0 0 10px rgba(255, 41, 117, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header > .back_btn {
+  justify-self: flex-start;
+  background: var(--primary);
+  padding: 0 clamp(1rem, 3vw, 2.25rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: clamp(1rem, 3vw, 2rem);
+  border: none;
+  outline: none;
+  height: 100%;
+  border-radius: 0;
+  font-family: 'Press Start 2P', cursive;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 0 5px var(--accent);
+  text-shadow: 0 0 5px var(--accent);
+}
+
+.header > .back_btn:hover {
+  background: var(--accent);
+  color: var(--white);
+  box-shadow: 0 0 18px var(--accent), inset 0 0 12px var(--white);
+}
+
+.header > .logo {
+  margin: clamp(0.8rem, 2vw, 1.5rem) 0 !important;
+  color: var(--white);
+  text-shadow: 3px 3px 0px var(--accent), 5px 5px 0px rgba(224, 40, 80, 0.5);
+  font-family: "Press Start 2P", cursive;
+  font-size: clamp(1.2rem, 4vw, 3rem);
+  font-style: normal;
+  font-weight: 400;
+  display: flex;
+  gap: clamp(0.5rem, 2vw, 1.5rem);
+  letter-spacing: 0.1rem;
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.header > .logo::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-secondary), transparent);
+}
+
+.header > .logo > span {
+  position: relative;
+  display: inline-block;
+}
+
+.header > .logo > span:nth-child(1) {
+  animation: move1 var(--animation-duration) forwards infinite;
+  animation-delay: var(--animation-delay);
+  color: var(--white);
+}
+
+.header > .logo > span:nth-child(2) {
+  animation: move2 var(--animation-duration) forwards infinite;
+  animation-delay: var(--animation-delay);
+  color: var(--accent-secondary);
+}
+
+.header > .logo > span:nth-child(3) {
+  animation: move3 var(--animation-duration) forwards infinite;
+  animation-delay: var(--animation-delay);
+  color: var(--accent);
+}
+
+/* Enhanced animations for the logo spans */
+@keyframes move1 {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+    text-shadow: 0 0 10px var(--white), 0 0 20px var(--white);
+  }
+}
+
+@keyframes move2 {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+    text-shadow: 0 0 10px var(--accent-secondary), 0 0 20px var(--accent-secondary);
+  }
+}
+
+@keyframes move3 {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+    text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+  }
+}
+
+/* CRT flicker effect for the logo */
+@keyframes crtFlicker {
+  0% {
+    opacity: 1;
+  }
+  97% {
+    opacity: 1;
+  }
+  98% {
+    opacity: 0.8;
+  }
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+
+.header > .logo {
+  animation: crtFlicker 2s infinite;
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+  .header > .back_btn:active {
+    background: var(--accent);
+    color: var(--white);
+    box-shadow: 0 0 15px var(--accent), inset 0 0 10px var(--white);
+  }
+}
+
+/* Responsive breakpoints with improved design */
+/* For all screen sizes starting from mobile first */
+@media screen and (max-width: 480px) {
+  .header {
+    grid-template-columns: auto 1fr;
+  }
+  
+  .header > .logo {
+    text-align: center;
+    padding-right: clamp(0.5rem, 3vw, 1rem);
+  }
+}
+
+/* Extra small screens */
+@media screen and (max-width: 360px) {
+  .header > .logo {
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: center;
+    margin: 0.6rem 0 !important;
+    font-size: 1rem;
+  }
+  
+  .header > .back_btn {
+    padding: 0 0.7rem;
+    font-size: 0.9rem;
+    height: 100%;
+  }
+  
+  .header > .logo::after {
+    bottom: -5px;
+  }
+}
+
+/* Small screens and portrait phones */
+@media screen and (min-width: 361px) and (max-width: 575px) {
+  .header > .logo {
+    font-size: 1.3rem;
+    padding-right: 0.5rem;
+  }
+  
+  .header > .back_btn {
+    padding: 0 0.8rem;
+  }
+}
+
+/* Medium screens, landscape phones */
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .header > .logo {
+    font-size: 1.8rem;
+  }
+}
+
+/* Large screens, tablets */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .header > .logo {
+    font-size: 2.2rem;
+  }
+  
+  .header > .back_btn {
+    padding: 0 1.8rem;
+  }
+}
+
+/* Extra large screens, desktops */
+@media screen and (min-width: 1200px) {
+  .header > .logo {
+    font-size: 3rem;
+  }
+}
+
+/* High-resolution displays */
+@media screen and (min-width: 1400px) {
+  .header {
+    padding: 0.2rem 0;
+  }
+  
+  .header > .logo {
+    font-size: 3.2rem;
+  }
+  
+  .header > .back_btn {
+    padding: 0 2.5rem;
+    font-size: 2.2rem;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .header > .logo,
+  .header > .logo > span {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* High-contrast mode adjustments for accessibility */
+@media (forced-colors: active) {
+  .header {
+    border-bottom: 3px solid CanvasText;
+  }
+  
+  .header > .logo::after {
+    background: CanvasText;
+  }
+  
+  .header > .back_btn {
+    border: 1px solid CanvasText;
+  }
+}
+
+/* Print styles - maintain readability when printed */
+@media print {
+  .header {
+    position: static;
+    box-shadow: none;
+    border-bottom: 1px solid #333;
+  }
+  
+  .header > .logo {
+    text-shadow: none;
+    color: #000;
+    animation: none;
+  }
+  
+  .header > .back_btn {
+    display: none; /* Hide navigation button when printing */
+  }
+  
+  .header > .logo > span {
+    color: #000 !important;
+    animation: none;
+  }
+  
+  .header > .logo::after {
+    display: none;
+  }
+}

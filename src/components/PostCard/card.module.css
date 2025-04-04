@@ -1,0 +1,246 @@
+.post_image {
+  background-position: center;
+  background-size: cover;
+  border: 4px solid var(--accent);
+  box-shadow: 0 0 18px var(--accent), inset 0 0 12px var(--accent-secondary);
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  aspect-ratio: 16/9; /* Maintain consistent image ratio */
+  width: 100%;
+  max-width: 100%;
+}
+
+.post_image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px var(--accent), inset 0 0 20px var(--accent-secondary);
+}
+
+/* Enhanced CRT scanline effect */
+.post_image::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  box-shadow: 0 0 15px 5px var(--accent-secondary);
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  animation: scanline 2s linear infinite;
+  z-index: 2;
+}
+
+.post_image:hover::before {
+  opacity: 1;
+}
+
+@keyframes scanline {
+  0% { top: -10px; }
+  100% { top: 100%; }
+}
+
+/* Enhanced retro neon filter for images */
+.post_image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 14, 41, 0.15),
+    rgba(255, 41, 117, 0.1),
+    rgba(51, 204, 255, 0.1)
+  );
+  pointer-events: none;
+  z-index: 1;
+  transition: background 0.3s ease;
+}
+
+.post_image:hover::after {
+  background: linear-gradient(
+    135deg,
+    rgba(10, 14, 41, 0.1),
+    rgba(255, 41, 117, 0.15),
+    rgba(51, 204, 255, 0.15)
+  );
+}
+
+/* Add glitch effect on hover */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-5px, 5px);
+  }
+  40% {
+    transform: translate(5px, -5px);
+  }
+  60% {
+    transform: translate(-5px, -5px);
+  }
+  80% {
+    transform: translate(5px, 5px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.post_image:hover {
+  animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both;
+}
+
+.post_description {
+  display: block;
+  max-width: 90%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: normal;
+  font-size: 1.2rem;
+  color: var(--white);
+  text-shadow: 0 0 5px var(--accent-secondary);
+  padding: 0.8rem 0;
+  border-bottom: 3px solid var(--accent);
+  margin-bottom: 1rem;
+  line-height: 1.8;
+  position: relative;
+  font-family: 'VT323', monospace;
+  letter-spacing: 0.05rem;
+}
+
+.post_description::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-secondary), var(--accent));
+  background-size: 200% 100%;
+  animation: gradient-shift 3s ease infinite;
+  box-shadow: 0 0 10px var(--accent-secondary);
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.post {
+  background-color: rgba(29, 37, 62, 0.8);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+/* Add scanline effect to post */
+.post::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(33, 68, 149, 0.03) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.post:hover::before {
+  opacity: 1;
+}
+
+/* Add CRT edge effect */
+.post::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 8px;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.post:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 15px var(--accent-secondary), inset 0 0 10px rgba(51, 204, 255, 0.2);
+  transform: translateY(-3px);
+}
+
+/* Add shine effect on hover */
+@keyframes post-shine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+.post:hover::before {
+  animation: post-shine 1.5s ease-out;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+  .post_image {
+    aspect-ratio: 4/3;
+  }
+  .post_description {
+    font-size: 1.1rem;
+  }
+  .post {
+    padding: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .post_image {
+    aspect-ratio: 1;
+  }
+  .post_description {
+    font-size: 1rem;
+    padding: 0.6rem 0;
+  }
+  .post {
+    padding: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .post_image {
+    border-width: 2px;
+    aspect-ratio: 1;
+  }
+  .post_description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    padding: 0.5rem 0;
+  }
+  .post {
+    padding: 1rem;
+  }
+}
